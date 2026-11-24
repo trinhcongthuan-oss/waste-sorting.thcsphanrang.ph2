@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Phân loại rác thông minh - THCS Phan Rang (Phân hiệu 2)</title>
+
+    <meta name="theme-color" content="#15803d">
+    <meta name="description" content="Ứng dụng AI nhận diện và phân loại rác thải">
+
+    <link rel="manifest" href="./manifest.json">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <marquee direction="left" scrollamount="5">
+        <h1>TRƯỜNG THCS PHAN RANG - PHÂN HIỆU 2</h1>
+    </marquee>
+
+
+    <div class="header">
+        <div class="logo"><img src="./assets/images/LHP.png" alt="lgo">
+        </div>
+
+    </div>
+
+    <header class="header">
+        <div class="brand">
+            <div class="brand-icon">♻</div>
+            <div>
+                <h1>Green Vision AI</h1>
+                <p>Nhận diện rác thông minh</p>
+            </div>
+        </div>
+
+        <div class="offline-status">
+            <span class="status-dot"></span>
+            <span id="connectionStatus">Sẵn sàng</span>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="hero">
+            <span class="hero-tag">AI FOR GREEN ENVIRONMENT</span>
+
+            <h2>
+                Phân loại rác thải
+                <span>thông minh bằng AI</span>
+            </h2>
+
+            <p>
+                Chụp ảnh hoặc tải hình ảnh rác thải.
+                Green Vision AI sẽ hỗ trợ bạn nhận diện
+                và phân loại rác đúng cách.
+            </p>
+        </section>
+
+        <section class="main-card">
+
+            <h3>📷 Nhận diện rác thải</h3>
+
+            <div class="camera-area">
+
+                <video id="camera" autoplay playsinline class="camera hidden"></video>
+
+                <img id="preview" class="preview hidden" alt="Ảnh rác cần nhận diện">
+
+                <div id="cameraPlaceholder" class="placeholder">
+                    <div class="placeholder-icon">📸</div>
+                    <h3>Chưa có hình ảnh</h3>
+                    <p>Hãy chụp ảnh hoặc chọn ảnh từ thiết bị</p>
+                </div>
+
+            </div>
+
+            <div class="action-buttons">
+
+                <button id="startCameraBtn" class="btn btn-primary">
+                    📷 Mở camera
+                </button>
+
+                <button id="captureBtn" class="btn btn-success" disabled>
+                    Chụp ảnh
+                </button>
+
+                <label for="imageInput" class="btn btn-secondary">
+                    🖼 Chọn hình ảnh
+                </label>
+
+                <input type="file" id="imageInput" accept="image/*" hidden>
+
+            </div>
+
+            <div class="secondary-actions">
+                <button id="stopCameraBtn" class="btn btn-light" disabled>
+                    Tắt camera
+                </button>
+
+                <button id="resetBtn" class="btn btn-light">
+                    Làm mới
+                </button>
+            </div>
+
+            <div class="model-status" id="modelStatus">
+                Đang chờ tải mô hình AI...
+            </div>
+
+            <button id="predictBtn" class="btn btn-predict" disabled>
+                🧠 BẮT ĐẦU NHẬN DIỆN
+            </button>
+
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>AI đang phân tích hình ảnh...</p>
+            </div>
+
+        </section>
+
+        <section id="resultSection" class="result-card hidden">
+
+            <h3>🔍 Kết quả nhận diện</h3>
+
+            <div class="result-main">
+                <div id="resultIcon" class="result-icon">♻</div>
+
+                <div>
+                    <p class="result-label">AI dự đoán</p>
+                    <h2 id="resultName">Chưa xác định</h2>
+                    <p id="resultConfidence">Độ tin cậy: --</p>
+                </div>
+            </div>
+
+            <div class="probability-area">
+                <h4>Phân tích các nhóm rác</h4>
+                <div id="probabilityList"></div>
+            </div>
+
+            <div class="guidance">
+                <h4>💡 Hướng dẫn phân loại</h4>
+                <p id="resultDescription"></p>
+            </div>
+
+        </section>
+
+        <section class="category-section">
+
+            <h3>♻ 5 nhóm rác được nhận diện</h3>
+
+            <div class="category-grid">
+
+                <div class="category-item">
+                    <div>🍃</div>
+                    <h4>Hữu cơ</h4>
+                    <p>Rau, củ, quả</p>
+                </div>
+
+                <div class="category-item">
+                    <div>📄</div>
+                    <h4>Giấy</h4>
+                    <p>Giấy, carton</p>
+                </div>
+
+                <div class="category-item">
+                    <div>🧴</div>
+                    <h4>Nhựa</h4>
+                    <p>Chai, hộp nhựa</p>
+                </div>
+
+                <div class="category-item">
+                    <div>🥫</div>
+                    <h4>Kim loại</h4>
+                    <p>Lon, vỏ hộp</p>
+                </div>
+
+                <div class="category-item">
+                    <div>🗑️</div>
+                    <h4>Rác khác</h4>
+                    <p>Rác còn lại</p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="history-section">
+
+            <div class="section-heading">
+                <h3>📊 Lịch sử nhận diện</h3>
+
+                <button id="clearHistoryBtn" class="text-button">
+                    Xóa lịch sử
+                </button>
+            </div>
+
+            <!-- THỐNG KÊ KẾT QUẢ NHẬN DIỆN -->
+            <section class="statistics-section">
+                <h2>THỐNG KÊ PHÂN LOẠI RÁC</h2>
+
+                <div class="statistics-total">
+                    <p>Tổng số lần nhận diện</p>
+                    <strong id="totalRecognitions">0</strong>
+                </div>
+
+                <div class="statistics-list">
+                    <div class="statistic-item">
+                        <span>Rác hữu cơ</span>
+                        <strong id="organicCount">0</strong>
+                        <div class="statistic-bar">
+                            <div id="organicBar" class="statistic-fill organic-fill"></div>
+                        </div>
+                    </div>
+
+                    <div class="statistic-item">
+                        <span>Giấy</span>
+                        <strong id="paperCount">0</strong>
+                        <div class="statistic-bar">
+                            <div id="paperBar" class="statistic-fill paper-fill"></div>
+                        </div>
+                    </div>
+
+                    <div class="statistic-item">
+                        <span>Nhựa</span>
+                        <strong id="plasticCount">0</strong>
+                        <div class="statistic-bar">
+                            <div id="plasticBar" class="statistic-fill plastic-fill"></div>
+                        </div>
+                    </div>
+
+                    <div class="statistic-item">
+                        <span>Kim loại</span>
+                        <strong id="metalCount">0</strong>
+                        <div class="statistic-bar">
+                            <div id="metalBar" class="statistic-fill metal-fill"></div>
+                        </div>
+                    </div>
+
+                    <div class="statistic-item">
+                        <span>Rác khác</span>
+                        <strong id="otherCount">0</strong>
+                        <div class="statistic-bar">
+                            <div id="otherBar" class="statistic-fill other-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div id="historyList" class="history-list">
+                <p class="empty-history">
+                    Chưa có dữ liệu nhận diện.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>GREEN VISION AI</p>
+        <p>Ứng dụng trí tuệ nhân tạo vì môi trường xanh</p>
+        <p><b>TRƯỜNG THCS PHAN RANG - PHÂN HIỆU 2</b></p>
+    </footer>
+
+
+    <!-- Thư viện TensorFlow.js -->
+    <script src="./vendor/tf.min.js"></script>
+
+    <!-- Thư viện Teachable Machine -->
+    <script src="./vendor/teachablemachine-image.min.js"></script>
+
+    <!-- Các chương trình JavaScript -->
+    <script src="./js/history.js"></script>
+    <script src="./js/ai.js"></script>
+    <script src="./js/camera.js"></script>
+    <script src="./js/app.js"></script>
+
+</body>
+
+</html>
