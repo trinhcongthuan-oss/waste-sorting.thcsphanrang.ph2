@@ -10,7 +10,7 @@
     <meta name="theme-color" content="#15803d">
     <meta name="description" content="Ứng dụng AI nhận diện và phân loại rác thải">
 
-    <link rel="manifest" href="./manifest.json">
+    <link rel="manifest" href="./manifestgit status.json">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
@@ -75,7 +75,14 @@
                 </div>
 
             </div>
+<div class="camera-selection">
+    <label for="cameraSelect">Chọn camera:</label>
 
+    <select id="cameraSelect">
+        <option value="environment">📷 Camera sau</option>
+        <option value="user">🤳 Camera trước</option>
+    </select>
+</div>
             <div class="action-buttons">
 
                 <button id="startCameraBtn" class="btn btn-primary">
