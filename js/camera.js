@@ -1,4 +1,3 @@
-
 // ======================================
 // GREEN VISION AI - CAMERA
 // ======================================
@@ -27,6 +26,10 @@ const imageInput =
 const predictBtn =
     document.getElementById("predictBtn");
 
+const cameraSelect =
+    document.getElementById("cameraSelect");
+let selectedFacingMode = "environment";
+
 // Mở camera
 async function startCamera() {
 
@@ -42,17 +45,23 @@ async function startCamera() {
 
         stopCamera();
 
-       
-cameraStream = await navigator.mediaDevices.getUserMedia({
 
-    video: {
-        width: { ideal: 1280 },
-        height: { ideal: 720 }
-    },
+        cameraStream = await navigator.mediaDevices.getUserMedia({
 
-    audio: false
+            video: {
+                facingMode: {
+                    ideal: selectedFacingMode
+                },
+                width: {
+                    ideal: 1280
+                },
+                height: {
+                    ideal: 720
+                }
+            },
 
-});
+            audio: false
+        });
 
 
         camera.srcObject = cameraStream;
@@ -208,4 +217,20 @@ function resetCameraView() {
     imageInput.value = "";
 
     resetResult();
+}
+
+// Thay đổi camera trước hoặc camera sau
+if (cameraSelect) {
+
+    cameraSelect.addEventListener("change", function () {
+
+        selectedFacingMode = cameraSelect.value;
+
+        // Nếu camera đang bật thì mở lại theo lựa chọn mới
+        if (cameraStream) {
+            startCamera();
+        }
+
+    });
+
 }
