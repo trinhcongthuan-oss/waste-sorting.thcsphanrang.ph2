@@ -44,6 +44,8 @@ function displayResult(predictions) {
     const info = getWasteInfo(best.className);
 
     const confidence = best.probability;
+    // Hiển thị khu vực kết quả nhận diện
+resultSection.classList.remove("hidden");
 
     // Giữ nguyên phần code còn lại của hàm
 
@@ -141,7 +143,8 @@ if (confidence >= CONFIDENCE_THRESHOLD) {
         time: new Date().toLocaleString("vi-VN")
     });
 }
-
+// ĐÓNG HÀM displayResult() TẠI ĐÂY
+}
 // Làm mới kết quả
 function resetResult() {
 
@@ -270,4 +273,4 @@ if ("serviceWorker" in navigator) {
         }
 
     });
-}}}
+}
