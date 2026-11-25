@@ -25,6 +25,14 @@ const loading =
 
 // Hiển thị kết quả
 function displayResult(predictions) {
+    console.log("===== KIỂM TRA NHẬN DIỆN =====");
+
+console.table(predictions.map(item => ({
+    className: item.className,
+    probability: (item.probability * 100).toFixed(2) + "%"
+})));
+
+function displayResult(predictions) {
 
     if (!predictions || predictions.length === 0) {
         throw new Error("Không có kết quả nhận diện.");
@@ -32,11 +40,20 @@ function displayResult(predictions) {
 
     const best = predictions[0];
 
+    console.log("===== KIỂM TRA NHẬN DIỆN =====");
+
+    console.table(predictions.map(item => ({
+        className: item.className,
+        probability: (item.probability * 100).toFixed(2) + "%"
+    })));
+
+    console.log("LỚP AI CAO NHẤT:", best.className);
+
     const info = getWasteInfo(best.className);
 
     const confidence = best.probability;
 
-    resultSection.classList.remove("hidden");
+    // Giữ nguyên phần code còn lại của hàm
 
     // Kiểm tra độ tin cậy
     if (confidence < CONFIDENCE_THRESHOLD) {
@@ -117,20 +134,19 @@ function displayResult(predictions) {
     });
 
     // Lưu lịch sử khi AI nhận diện đủ tin cậy
-    if (confidence >= CONFIDENCE_THRESHOLD) {
+if (confidence >= CONFIDENCE_THRESHOLD) {
 
-        saveHistory({
+    console.log("DỮ LIỆU CHUẨN BỊ LƯU:", {
+        bestClass: best.className,
+        displayName: info.name,
+        confidence: confidence
+    });
 
-            name: "Plastic - Nhựa",
-            className: "Plastic",
-            confidence: 1,
-            time: "24/11/2026, 15:00:00"
-        });
-    }
-
-    resultSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
+    saveHistory({
+        name: info.name,
+        className: best.className,
+        confidence: confidence,
+        time: new Date().toLocaleString("vi-VN")
     });
 }
 
@@ -262,4 +278,4 @@ if ("serviceWorker" in navigator) {
         }
 
     });
-}
+};
