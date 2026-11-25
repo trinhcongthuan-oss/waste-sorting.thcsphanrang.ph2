@@ -278,4 +278,4 @@ if ("serviceWorker" in navigator) {
         }
 
     });
-};
+}}}
