@@ -10,6 +10,7 @@ const CONFIDENCE_THRESHOLD = 0.60;
 
 
 // Thông tin 5 nhóm rác
+
 function getWasteInfo(className) {
 
     const wasteTypes = {
@@ -44,12 +45,19 @@ function getWasteInfo(className) {
         }
     };
 
-    return wasteTypes[className] || {
+    // Chuẩn hóa tên lớp AI
+    const key = String(className || "")
+        .trim()
+        .split(" - ")[0]
+        .trim();
+
+    return wasteTypes[key] || {
         name: className,
         icon: "❓",
         description: "Chưa có hướng dẫn cho nhóm rác này."
     };
 }
+
 
 
 // ==========================================

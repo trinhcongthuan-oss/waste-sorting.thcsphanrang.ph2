@@ -528,3 +528,111 @@ footer {
 .other-fill {
     background: #607d8b;
 }
+/* ==============================
+   HƯỚNG DẪN PHÂN LOẠI RÁC
+============================== */
+
+.waste-guide-section {
+    margin-top: 25px;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+}
+
+.waste-guide-intro {
+    color: #64748b;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.waste-guide-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.waste-guide-card {
+    padding: 20px;
+    border-radius: 14px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.waste-guide-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.waste-guide-icon {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.waste-guide-card h4 {
+    color: #166534;
+    font-size: 20px;
+    margin: 0 0 12px;
+}
+
+.waste-guide-card p {
+    color: #475569;
+    font-size: 15px;
+    line-height: 1.8;
+    margin: 10px 0;
+}
+
+.waste-guide-card strong {
+    color: #1e293b;
+}
+
+.organic-guide {
+    border-top: 4px solid #22c55e;
+}
+
+.paper-guide {
+    border-top: 4px solid #3b82f6;
+}
+
+.plastic-guide {
+    border-top: 4px solid #0ea5e9;
+}
+
+.metal-guide {
+    border-top: 4px solid #f59e0b;
+}
+
+.other-guide {
+    border-top: 4px solid #64748b;
+    grid-column: 1 / -1;
+}
+
+.waste-guide-note {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f0fdf4;
+    border-left: 4px solid #22c55e;
+    border-radius: 8px;
+    color: #166534;
+    line-height: 1.7;
+}
+
+/* Hiển thị trên điện thoại */
+@media (max-width: 600px) {
+    .waste-guide-section {
+        padding: 16px;
+    }
+
+    .waste-guide-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .other-guide {
+        grid-column: auto;
+    }
+
+    .waste-guide-card {
+        padding: 16px;
+    }
+}

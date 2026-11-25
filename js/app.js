@@ -45,7 +45,7 @@ function displayResult(predictions) {
 
     const confidence = best.probability;
     // Hiển thị khu vực kết quả nhận diện
-resultSection.classList.remove("hidden");
+    resultSection.classList.remove("hidden");
 
     // Giữ nguyên phần code còn lại của hàm
 
@@ -128,22 +128,22 @@ resultSection.classList.remove("hidden");
     });
 
     // Lưu lịch sử khi AI nhận diện đủ tin cậy
-if (confidence >= CONFIDENCE_THRESHOLD) {
+    if (confidence >= CONFIDENCE_THRESHOLD) {
 
-    console.log("DỮ LIỆU CHUẨN BỊ LƯU:", {
-        bestClass: best.className,
-        displayName: info.name,
-        confidence: confidence
-    });
+        console.log("DỮ LIỆU CHUẨN BỊ LƯU:", {
+            bestClass: best.className,
+            displayName: info.name,
+            confidence: confidence
+        });
 
-    saveHistory({
-        name: info.name,
-        className: best.className,
-        confidence: confidence,
-        time: new Date().toLocaleString("vi-VN")
-    });
-}
-// ĐÓNG HÀM displayResult() TẠI ĐÂY
+        saveHistory({
+            name: info.name,
+            className: best.className,
+            confidence: confidence,
+            time: new Date().toLocaleString("vi-VN")
+        });
+    }
+    // ĐÓNG HÀM displayResult() TẠI ĐÂY
 }
 // Làm mới kết quả
 function resetResult() {
