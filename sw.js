@@ -3,7 +3,7 @@
 // GREEN VISION AI - OFFLINE CACHE
 // ======================================
 
-const CACHE_NAME = "green-vision-ai-v1";
+const CACHE_NAME = "green-vision-ai-v2";
 
 // Các tài nguyên cần lưu ngoại tuyến
 const APP_FILES = [
