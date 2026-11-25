@@ -25,14 +25,6 @@ const loading =
 
 // Hiển thị kết quả
 function displayResult(predictions) {
-    console.log("===== KIỂM TRA NHẬN DIỆN =====");
-
-console.table(predictions.map(item => ({
-    className: item.className,
-    probability: (item.probability * 100).toFixed(2) + "%"
-})));
-
-function displayResult(predictions) {
 
     if (!predictions || predictions.length === 0) {
         throw new Error("Không có kết quả nhận diện.");
